@@ -11,6 +11,8 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
+import handlerSlider from "./slider";
+
 export default {
 	async fetch(request, env, ctx): Promise<Response> {
 		const url = new URL(request.url);
@@ -19,6 +21,8 @@ export default {
 				return new Response('Hello, World!');
 			case '/random':
 				return new Response(crypto.randomUUID());
+			case '/sliderx':
+				return handlerSlider(request, env, ctx);
 			default:
 				return new Response('Not Found', { status: 404 });
 		}
